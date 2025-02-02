@@ -1,0 +1,98 @@
+On-Chain Project Showcasing Platform 
+(MERN + Tezos) 
+Overview 
+This platform is a decentralized crowdfunding and recognition system where builders can mint their 
+projects as NFTs and receive XTZ donations from supporters. In return, supporters receive Gratitude 
+NFTs, acting as proof of support. The platform ensures legitimacy by implementing a submission fee 
+and an admin review process before listing projects. 
+Features 
+1. User Authentication & Wallet Integration 
+• Users connect via Temple Wallet / Kukai Wallet. 
+• Wallet serves as identity (no traditional logins). 
+• MongoDB stores profile info for UI display. 
+2. Project Submission & Minting 
+• Builders must pay a small fee (e.g., 5 XTZ) to submit a project. 
+• Submission requires details:  
+o Project Name, Description, Logo, Category 
+o Live Website & Social Media Links 
+• Admin team reviews the submission before approval. 
+• Once approved, a Tezos FA2 NFT is minted representing the project. 
+• Metadata is stored on IPFS. 
+3. Admin Review Process 
+• Ensures only serious projects are listed. 
+• Admins verify:  
+o Live website & working product. 
+o Social media authenticity. 
+o Direct communication with the builder. 
+• Approved projects appear on the platform. 
+• Rejected projects lose their submission fee. 
+4. Upvoting & Donations 
+• Users can upvote projects (on-chain transaction). 
+• Users can donate XTZ directly to project wallets. 
+• Smart contract tracks donations & votes. 
+5. Gratitude NFT for Supporters 
+• Every donor receives a Gratitude NFT. 
+• NFT contains:  
+o Project Name 
+o Amount Donated 
+o Unique Design (based on donation size) 
+• NFTs are minted on Tezos (FA2 standard). 
+• Can be traded or collected by supporters. 
+6. Leaderboard & Ranking System 
+• Projects are ranked based on:  
+o Number of upvotes. 
+o Total XTZ received. 
+• Dynamic updates ensure top projects gain visibility. 
+7. Security & Fraud Prevention 
+• Submission fee discourages spam. 
+• Admin review ensures legitimacy. 
+• Milestone-based funding (optional):  
+o Funds are released in phases based on progress. 
+• Reputation staking for builders:  
+o Builders can stake XTZ as proof of commitment. 
+• Refund system (optional):  
+o If a project is inactive, community votes for refunds. 
+User Flow 
+1. Builder Submits Project 
+• Pays listing fee (5 XTZ). 
+• Fills out project details & submits for review. 
+• Admins verify & approve the project. 
+• Project NFT is minted on Tezos. 
+2. Users Discover & Support Projects 
+• Browse projects & filter by category. 
+• Upvote projects (on-chain transaction). 
+• Donate XTZ (recorded on smart contract). 
+3. Supporters Receive NFTs 
+• Gratitude NFT is minted per donation. 
+• NFT is stored in supporter’s wallet. 
+• Can be sold, traded, or held as a collectible. 
+4. Project Success or Shutdown 
+• If successful, builder honors perks. 
+• If abandoned, NFTs lose utility but remain tradeable. 
+• Platform may add extra utility to NFTs later. 
+Smart Contract Overview 
+1. Project NFT (FA2 Standard) 
+• Minted upon admin approval. 
+• Stores project metadata (name, logo, creator, category, IPFS link). 
+2. Donation Tracking 
+• Tracks who donated & how much. 
+• Stores XTZ contributions on-chain. 
+3. Gratitude NFT (FA2 Standard) 
+• Minted for each supporter upon donation. 
+• Contains donor info + project details. 
+• Can be bought/sold on NFT marketplaces. 
+Monetization Strategy 
+1. Project Listing Fees (e.g., 5 XTZ per project submission). 
+2. Transaction Fees on donations (small % for platform maintenance). 
+3. Premium Features (e.g., featured projects, analytics tools). 
+Future Expansion 
+• Cross-chain NFTs (e.g., bridge to Ethereum/Solana). 
+• Marketplace for Gratitude NFTs. 
+• Governance System where users vote on project approvals. 
+Next Steps 
+   Develop Smart Contracts for project minting & donations.  
+   Build MERN-based API for frontend integration.  
+   Design React UI for seamless user experience. 
+ 
+This ensures a trustworthy, transparent, and community-driven funding platform on Tezos.         
+ 

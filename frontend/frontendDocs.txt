@@ -1,0 +1,228 @@
+Frontend README - Reckon Project
+
+Table of Contents
+
+Introduction
+
+Project Structure
+
+Getting Started
+
+Environment Variables
+
+Development vs Production
+
+Phases of Development
+
+Mock Data & Context
+
+API Integration
+
+State Management
+
+Hooks
+
+Constants
+
+Asset Management
+
+Security & Best Practices
+
+Deployment
+
+Future Enhancements
+
+Introduction
+
+This is the frontend for the Reckon Project, a decentralized crowdfunding and recognition system built with React. Users can mint their projects as NFTs and receive XTZ donations from supporters.
+
+Project Structure
+
+frontend/
+│── src/
+│   ├── components/      # Reusable UI components
+│   ├── pages/           # Different views (Home, Dashboard, Project Details)
+│   ├── hooks/           # Custom React hooks
+│   ├── context/         # Global state management using React Context API
+│   ├── constants/       # Constants (URLs, action types, etc.)
+│   ├── assets/          # Static assets like images and icons
+│   ├── utils/           # Helper functions and utilities
+│   ├── services/        # API interaction layer
+│   ├── mockData/        # Mock API responses for development
+│   ├── App.tsx         # Root component
+│   ├── main.tsx        # Entry point
+│── public/             # Public assets
+│── .env               # Environment variables
+│── package.json       # Dependencies and scripts
+│── README.md          # Project documentation
+
+Getting Started
+
+Prerequisites
+
+Node.js (v16+)
+
+Yarn or npm
+
+Tezos Wallet (Temple/Kukai) for testing
+
+Installation
+
+# Clone the repository
+git clone https://github.com/your-repo/reckon-frontend.git
+cd reckon-frontend
+
+# Install dependencies
+yarn install  # or npm install
+
+Running the Development Server
+
+yarn dev  # Starts the local development server
+
+Environment Variables
+
+Create a .env file at the root of the project:
+
+VITE_API_BASE_URL=https://api.dev.reckon.com
+VITE_PRODUCTION_API_BASE_URL=https://api.reckon.com
+VITE_MODE=development  # Change to 'production' in production
+
+Development vs Production
+
+The frontend dynamically switches between environments based on VITE_MODE:
+
+const API_BASE_URL = import.meta.env.VITE_MODE === 'production'
+  ? import.meta.env.VITE_PRODUCTION_API_BASE_URL
+  : import.meta.env.VITE_API_BASE_URL;
+
+Phases of Development
+
+Phase 1: Setup & UI Development
+
+Setup React with Vite
+
+Implement UI components (buttons, inputs, modals, etc.)
+
+Define global styles
+
+Phase 2: State Management & Mock Data
+
+Implement Context API for global state
+
+Create mock services to simulate API responses
+
+Phase 3: API Integration
+
+Connect frontend with backend services
+
+Implement authentication with Tezos wallets
+
+Phase 4: Testing & Security
+
+Write unit tests with Jest & React Testing Library
+
+Implement security measures (rate limiting, input validation)
+
+Mock Data & Context
+
+Since backend integration may not be ready, mock data is used:
+
+import { createContext, useState } from 'react';
+const ProjectContext = createContext(null);
+
+export const ProjectProvider = ({ children }) => {
+  const [projects, setProjects] = useState(mockProjects);
+  return (
+    <ProjectContext.Provider value={{ projects, setProjects }}>
+      {children}
+    </ProjectContext.Provider>
+  );
+};
+
+API Integration
+
+Example API Call
+
+import axios from 'axios';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+export const fetchProjects = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/projects`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+  }
+};
+
+State Management
+
+This project uses React Context for global state:
+
+ProjectContext for managing project listings
+
+AuthContext for user authentication
+
+Hooks
+
+Custom Hook Example: useFetchProjects
+
+import { useState, useEffect } from 'react';
+import { fetchProjects } from '../services/api';
+
+export const useFetchProjects = () => {
+  const [projects, setProjects] = useState([]);
+  useEffect(() => {
+    fetchProjects().then(setProjects);
+  }, []);
+  return projects;
+};
+
+Constants
+
+All app-wide constants are stored in src/constants:
+
+export const API_ENDPOINTS = {
+  GET_PROJECTS: '/projects',
+  CREATE_PROJECT: '/projects/create',
+};
+
+Asset Management
+
+All assets (images, icons, logos) are stored in src/assets/. Use import or direct paths in JSX:
+
+import Logo from '../assets/logo.png';
+<img src={Logo} alt="Logo" />
+
+Security & Best Practices
+
+Use Zod for data validation.
+
+Implement lazy loading for performance.
+
+Use .env for sensitive configurations.
+
+Sanitize user inputs to prevent XSS attacks.
+
+Deployment
+
+Build for Production
+
+yarn build  # Generates static files in /dist
+
+Deploy to Vercel/Netlify
+
+Push code to GitHub.
+
+Connect GitHub repo to Vercel/Netlify.
+
+Deploy and verify production build.
+
+Future Enhancements
+
+Implement dark mode.
+
+Add GraphQL support.
+
+Optimize performance with React Suspense.
+
