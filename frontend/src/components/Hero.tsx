@@ -1,6 +1,5 @@
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
-import Navbar from "./Navbar"
 import RevolvingText from './RevolvingText'
 
 const Hero = () => {
@@ -41,7 +40,7 @@ const Hero = () => {
       setCurrentSlide((prev) => (prev + 1) % featuredProjects.length)
     }, 5000)
     return () => clearInterval(timer)
-  }, [])
+  }, [featuredProjects.length])
 
   return (
     <div className="relative w-full overflow-hidden min-h-screen flex items-center">
